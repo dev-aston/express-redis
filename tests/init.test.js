@@ -10,8 +10,10 @@ let client
 beforeAll(async () => {
   const config = { flushAtInit: true }
   client = await redis({
-    host: process.env.REDIS_HOST || 'localhost',
-    port: process.env.REDIS_PORT || 6379,
+    socket: {
+      host: process.env.REDIS_HOST || 'localhost',
+      port: process.env.REDIS_PORT || 6379,
+    },
     database: 1,
   })
 
