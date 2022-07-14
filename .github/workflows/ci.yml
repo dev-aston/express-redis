@@ -4,6 +4,7 @@ on:
   - pull_request
 
 jobs:
+  container-job:
     runs-on: ubuntu-latest
     container: node:10.18-jessie
     services:
