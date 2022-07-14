@@ -1,8 +1,10 @@
 const redis = require('redis')
 
 const DEFAULT_CONFIG = {
-  // host: 'localhost',
-  // port: 6379,
+  socket: {
+    // host: 'localhost',
+    // port: 6379,
+  },
 }
 
 const connect = async (config = DEFAULT_CONFIG) => {

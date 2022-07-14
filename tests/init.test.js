@@ -9,7 +9,13 @@ let client
 
 beforeAll(async () => {
   const config = { flushAtInit: true }
-  client = await redis({ database: 1 })
+  client = await redis({
+    socket: {
+      host: process.env.REDIS_HOST || 'localhost',
+      port: process.env.REDIS_PORT || 6379,
+    },
+    database: 1,
+  })
 
   const app = await server(config, client)
 
