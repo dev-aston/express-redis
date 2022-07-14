@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
-        redis-version: [5]
+        node-version: [16.x, 18.x]
+        redis-version: [4, 5]
       fail-fast: true
     steps:
       - uses: actions/checkout@v3
