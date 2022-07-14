@@ -25,3 +25,8 @@ jobs:
         run: npm i
       - name: Run unit tests
         run: npm run test:ci
+      - name: release
+        uses: codfish/semantic-release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
