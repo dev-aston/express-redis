@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Use Redis ${{ matrix.redis-version }}
-        uses: supercharge/redis-github-action@1.4
+        uses: supercharge/redis-github-action@1.4.0
         with:
           node-version: ${{ matrix.redis-version }}
       - name: Install dependencies
