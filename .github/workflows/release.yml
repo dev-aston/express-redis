@@ -1,7 +1,8 @@
-name: CI
+name: release
 
 on:
   - pull_request
+  - push
 
 jobs:
   unit-tests:
@@ -28,6 +29,9 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
+    if: contains('
+      refs/heads/main
+      ', github.ref) && github.event_name != 'pull_request'
     needs:
       - unit-tests
     steps:
