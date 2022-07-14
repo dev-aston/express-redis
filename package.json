@@ -1,5 +1,5 @@
 {
-  "name": "@m_pi/express-redis",
+  "name": "@empy/express-redis",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
