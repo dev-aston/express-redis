@@ -2,11 +2,10 @@ name: CI
 
 on:
   - pull_request
-  - push
 
 jobs:
-  unit-tests:
     runs-on: ubuntu-latest
+    container: node:10.18-jessie
     services:
       redis:
         image: redis
@@ -15,6 +14,8 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+  unit-tests:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16.x]
@@ -28,4 +29,7 @@ jobs:
       - name: Install dependencies
         run: npm i
       - name: Run unit tests
-        run: REDIS_HOST=redis REDIS_PORT=6379 npm run test:ci
+        run: npm run test:ci
+        env:
+          REDIS_HOST: redis
+          REDIS_PORT: 6379
