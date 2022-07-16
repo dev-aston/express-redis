@@ -1,7 +1,6 @@
 const request = require('supertest')
 const redis = require('./__misc__/redis')
 const server = require('./__misc__/server')
-const { sleep } = require('./__misc__/tools')
 
 const { LARGE_PAYLOAD } = require('./__misc__/payloads')
 

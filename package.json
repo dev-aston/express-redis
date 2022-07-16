@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "A module to create an express middleware to manage cache with redis.",
   "main": "lib/index.js",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "test": "jest --watchAll --detectOpenHandles",
     "test:ci": "jest --verbose --bail",
@@ -24,9 +26,9 @@
     "access": "public"
   },
   "dependencies": {
+    "winston": "^3.8.1"
   },
   "devDependencies": {
-    "redis": "^4.1.0",
     "eslint": "^8.17.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
@@ -35,6 +37,7 @@
     "express": "^4.18.1",
     "jest": "^28.1.1",
     "prettier": "2.6.2",
+    "redis": "^4.1.0",
     "supertest": "^6.2.3"
   }
 }

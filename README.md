@@ -15,6 +15,7 @@
 | Key | Type | Default | Description
 | --- | --- | --- | --- |
 | ttl | number | 86400 | Duration, in seconds, to retain the cached value.
+| debug | boolean | false | Enable debug messages.
 
 ## Redis Client
 

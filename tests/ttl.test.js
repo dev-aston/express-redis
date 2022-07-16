@@ -9,7 +9,7 @@ let agent
 let client
 
 beforeAll(async () => {
-  const config = { ttl: 1, debug: true }
+  const config = { ttl: 1, debug: false }
   client = await redis({
     socket: {
       host: process.env.REDIS_HOST || 'localhost',
