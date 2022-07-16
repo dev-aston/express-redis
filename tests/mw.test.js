@@ -1,6 +1,7 @@
 const request = require('supertest')
 const redis = require('./__misc__/redis')
 const server = require('./__misc__/server')
+const { sleep } = require('./__misc__/tools')
 
 const { LARGE_PAYLOAD } = require('./__misc__/payloads')
 
@@ -8,7 +9,7 @@ let agent
 let client
 
 beforeAll(async () => {
-  const config = { flushAtInit: true }
+  const config = {}
   client = await redis({
     socket: {
       host: process.env.REDIS_HOST || 'localhost',
@@ -29,18 +30,19 @@ afterAll(async () => {
 
 describe('Express - General routing', () => {
   test('GET - Response in cache', async () => {
+    const url = '/cache/get'
     // 1st call, the endpoint returns its json, and is supposed to be cached.
-    let res = await agent.get('/cache/get')
+    let res = await agent.get(url)
 
     expect(res.headers['content-type']).toMatch(/json/)
     expect(res.body.length).toEqual(LARGE_PAYLOAD.length)
     expect(res.body[0]._id).toEqual(LARGE_PAYLOAD[0]._id)
 
-    const cache = await client.get('/cache/get')
+    const cache = await client.get(url)
     expect(JSON.parse(cache)).toMatchObject(LARGE_PAYLOAD)
 
-    // 2nd Call to retrieve from cache and ccheck content-type and body
-    res = await agent.get('/cache/get')
+    // 2nd Call to retrieve from cache and check content-type and body
+    res = await agent.get(url)
 
     expect(res.headers['content-type']).toMatch(/json/)
     expect(res.body.length).toEqual(LARGE_PAYLOAD.length)

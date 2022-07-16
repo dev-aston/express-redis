@@ -10,6 +10,12 @@
 
 # Usage
 
+## Configuration options
+
+| Key | Type | Default | Description
+| --- | --- | --- | --- |
+| ttl | number | 86400 | Duration, in seconds, to retain the cached value.
+
 ## Redis Client
 
 This module is not meant to manage the redis connection. It is expected that the app using it to manage the redis configuration.
@@ -24,6 +30,7 @@ It is written to work with the [node-redis](https://github.com/redis/node-redis)
   const client = redis.createClient()
   await client.connect()
 
+  const config = {} // See configuration options
   const { cacheMiddleware } = expressRedis(config, redisClient)
 
 ```
