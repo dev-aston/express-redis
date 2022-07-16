@@ -16,8 +16,9 @@ beforeAll(async () => {
     },
     database: 1,
   })
+  await client.FLUSHALL()
 
-  const app = await server(config, client)
+  const app = server(config, client)
 
   agent = request(app)
 })

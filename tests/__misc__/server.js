@@ -1,14 +1,14 @@
 const express = require('express')
-const cacheMiddlewares = require('../../lib')
+const expressRedis = require('../../lib')
 
 const { LARGE_PAYLOAD } = require('./payloads')
 
-const init = async (config, redisClient) => {
-  const { readCache } = await cacheMiddlewares(config, redisClient)
+const init = (config, redisClient) => {
+  const { cacheMiddleware } = expressRedis(config, redisClient)
 
   const app = express().use(express.urlencoded({ extended: true }))
 
-  app.use(/^\/cache/, readCache)
+  app.use(/^\/cache/, cacheMiddleware)
 
   app.get('/cache/get', (req, res, next) => {
     res.status(200).json(LARGE_PAYLOAD)
@@ -25,7 +25,7 @@ const init = async (config, redisClient) => {
     next()
   })
 
-  app.get('/isolate/path/1', readCache, (req, res, next) => {
+  app.get('/isolate/path/1', cacheMiddleware, (req, res, next) => {
     res.status(200).json(LARGE_PAYLOAD)
     next()
   })
@@ -34,8 +34,6 @@ const init = async (config, redisClient) => {
     res.status(200).json(LARGE_PAYLOAD)
     next()
   })
-
-  // app.use(/^\/cache/, writeCache)
 
   return app
 }
