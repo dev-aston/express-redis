@@ -1,7 +1,7 @@
 {
   "name": "@empy/express-redis",
   "version": "1.0.0",
-  "description": "",
+  "description": "A module to create an express middleware to manage cache with redis.",
   "main": "lib/index.js",
   "files": ["lib"],
   "scripts": {
@@ -11,8 +11,15 @@
     "prettier": "prettier ./**/*.js --check",
     "prettier:fix": "prettier ./**/*.js --write"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Martin Picard",
+    "url": "https://github.com/dev-aston"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dev-aston/express-redis.git"
+  },
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },

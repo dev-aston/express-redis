@@ -1,4 +1,6 @@
 
+[![release](https://github.com/dev-aston/express-redis/actions/workflows/release.yml/badge.svg)](https://github.com/dev-aston/express-redis/actions/workflows/release.yml)
+[![Version](https://img.shields.io/npm/v/@empy/express-redis.svg)](https://www.npmjs.com/package/@empy/express-redis)
 
 @empy/express-redis
 ===
@@ -17,12 +19,12 @@ It is written to work with the [node-redis](https://github.com/redis/node-redis)
 ## Express app
 ```js
   const redis = require('redis')
+  const expressRedis = require('@empy/express-redis')
 
-  const client = redis.createClient(config)
-
+  const client = redis.createClient()
   await client.connect()
 
-  const { cacheMiddleware } = cacheMiddlewares(config, redisClient)
+  const { cacheMiddleware } = expressRedis(config, redisClient)
 
 ```
 
